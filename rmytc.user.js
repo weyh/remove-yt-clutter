@@ -6,7 +6,7 @@
 // @author         weyh
 // @match          https://www.youtube.com/*
 // @match          https://www.youtube.com
-// @downloadURL    https://github.com/weyh/remove-yt-clutter/raw/main/rmytc.js
+// @downloadURL    https://github.com/weyh/remove-yt-clutter/raw/main/rmytc.user.js
 // @grant          none
 // @run-at         document-end
 // ==/UserScript==
