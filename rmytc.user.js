@@ -2,7 +2,7 @@
 // @name           Remove YT Clutter
 // @namespace      http://example.org
 // @description    Removes youtube unnecessary buttons
-// @version        1.0.0
+// @version        1.0.1
 // @author         weyh
 // @match          https://www.youtube.com/*
 // @match          https://www.youtube.com
@@ -42,6 +42,13 @@
         GM_addStyle(`ytd-guide-entry-renderer a[title="${item}"] { display: none !important; }`);
         GM_addStyle(`ytd-mini-guide-entry-renderer a[title="${item}"] { display: none !important; }`);
     }
+
+    // hide shorts from grid
+    GM_addStyle(`ytd-rich-item-renderer:has(> div ytd-rich-grid-media ytd-thumbnail-overlay-time-status-renderer[overlay-style='SHORTS']) { display: none !important; }`);
+    GM_addStyle(`ytd-video-renderer:has(> div ytd-thumbnail ytd-thumbnail-overlay-time-status-renderer[overlay-style='SHORTS']) { display: none !important; }`);
+
+    // reomve from releted
+    GM_addStyle(`ytd-reel-shelf-renderer:has(> div h2 yt-icon) { display: none !important; }`);
 
     // open all playlists
     clickFunc();
