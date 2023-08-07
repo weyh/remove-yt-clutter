@@ -2,7 +2,7 @@
 // @name           Remove YT Clutter
 // @namespace      http://example.org
 // @description    Removes youtube unnecessary buttons
-// @version        1.0.1
+// @version        1.0.2
 // @author         weyh
 // @match          https://www.youtube.com/*
 // @match          https://www.youtube.com
@@ -28,6 +28,14 @@
         sheet.insertRule(css, (sheet.rules || sheet.cssRules || []).length);
     }
 
+    const sub_shelf = (e) => {
+        document.querySelectorAll("ytd-rich-section-renderer").forEach(e => {
+            if (e.innerHTML.includes("Shorts")) {
+                e.remove();
+            }
+        })
+    }
+
     const clickFunc = () => {
         setTimeout(() => {
             if (document.querySelector("a[title='Show more']") == null) {
@@ -35,6 +43,8 @@
             } else {
                 document.querySelector("a[title='Show more']").click();
             }
+
+            sub_shelf();
         }, 300);
     }
 
@@ -46,10 +56,16 @@
     // hide shorts from grid
     GM_addStyle(`ytd-rich-item-renderer:has(> div ytd-rich-grid-media ytd-thumbnail-overlay-time-status-renderer[overlay-style='SHORTS']) { display: none !important; }`);
     GM_addStyle(`ytd-video-renderer:has(> div ytd-thumbnail ytd-thumbnail-overlay-time-status-renderer[overlay-style='SHORTS']) { display: none !important; }`);
+    GM_addStyle(`ytd-video-renderer:has(> div ytd-thumbnail ytd-thumbnail-overlay-time-status-renderer[overlay-style='SHORTS']) { display: none !important; }`);
 
     // reomve from releted
     GM_addStyle(`ytd-reel-shelf-renderer:has(> div h2 yt-icon) { display: none !important; }`);
 
     // open all playlists
     clickFunc();
+
+    window.addEventListener('resize', (e) => {
+        setTimeout(() => sub_shelf(e), 1000);
+    });
+    document.addEventListener("DOMContentLoaded", sub_shelf);
 })();
