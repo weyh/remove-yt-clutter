@@ -2,11 +2,13 @@
 // @name           Remove YT Clutter
 // @namespace      http://example.org
 // @description    Removes youtube unnecessary buttons
-// @version        1.0.2
+// @version        1.0.3
 // @author         weyh
 // @match          https://www.youtube.com/*
+// @match          https://www.youtube.com/feed/subscriptions
 // @match          https://www.youtube.com
 // @downloadURL    https://github.com/weyh/remove-yt-clutter/raw/main/rmytc.user.js
+// @updateURL      https://github.com/weyh/remove-yt-clutter/raw/main/rmytc.user.js
 // @grant          none
 // @run-at         document-end
 // ==/UserScript==
@@ -65,7 +67,7 @@
     clickFunc();
 
     window.addEventListener('resize', (e) => {
-        setTimeout(() => sub_shelf(e), 1000);
+        setTimeout(sub_shelf, 1000);
     });
     document.addEventListener("DOMContentLoaded", sub_shelf);
 })();
